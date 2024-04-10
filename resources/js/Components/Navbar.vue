@@ -39,7 +39,8 @@ const classes = computed(() =>
             </div>
         </div>
         <div class="navbar-center">
-            <a class="btn btn-ghost text-xl">Test Project 2 by Roman Mysyura</a>
+           
+            <Link href="/" class="btn btn-ghost text-xl">Test Project 2</Link>
         </div>
         <div class="navbar-end">
             <Link class="btn btn-ghost btn-circle">
