@@ -23,5 +23,5 @@ defineProps({
 
 <template>
     <Head title="Test Project 2" />
-    <h1 class="text-center text-4xl">Test Project by Roman Mysyura</h1>
+    <h1 class="text-center text-4xl">Test Project 2 by Roman Mysyura</h1>
 </template>
