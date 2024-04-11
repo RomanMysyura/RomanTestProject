@@ -21,16 +21,14 @@ export default {
     },
     methods: {
         submitForm() {
-            // Enviar les dades a través d'Axios
             axios.post('/crear-crud', {
                 name: this.name
             })
             .then(response => {
-                // Si la crida és exitosa, pots gestionar la resposta aquí
                 console.log(response.data);
+                window.location.reload();
             })
             .catch(error => {
-                // Si hi ha algun error, pots gestionar l'error aquí
                 console.error(error);
             });
         }

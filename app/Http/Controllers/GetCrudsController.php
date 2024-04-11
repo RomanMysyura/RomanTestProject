@@ -21,7 +21,16 @@ class GetCrudsController extends Controller
         // Guardar el nou registre a la base de dades
         $crud->save();
         
-        // Retornar una resposta indicant que s'ha afegit el registre amb èxit
-        return response()->json(['message' => 'Registre afegit amb èxit']);
+        // Retornar a la pagina welcome
+        return redirect('/');
+    }
+
+    public function getData()
+    {
+        // Obtenir tots els registres de la taula "cruds_table"
+        $cruds = Crud::all();
+        
+        
+        return response()->json($cruds);
     }
 }

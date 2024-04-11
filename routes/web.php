@@ -15,6 +15,9 @@ Route::get('/', function () {
     ]);
 });
 
+
+
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -26,5 +29,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/crear-crud', [GetCrudsController::class, 'addData']);
+Route::get('/getData', [GetCrudsController::class, 'getData']);
 
 require __DIR__.'/auth.php';
