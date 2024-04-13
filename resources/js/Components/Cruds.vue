@@ -64,7 +64,7 @@ export default {
 
 <template>
     <div class="max-w-md mx-auto mt-8">
-        <h1 class="text-center text-4xl font-bold mb-8">Formularis CRUDS + WYSIWYG</h1>
+        <h1 class="text-center text-4xl font-bold mb-8">Formularis CRUDS & WYSIWYG</h1>
 
         <div class="flex gap-1 justify-center mb-2  rounded p-0.5">
             <button type="button" @click="toggleBold" :class="{ 'bg-gray-300': isBold }"
@@ -93,7 +93,7 @@ export default {
                         d="M3 12H21M19 7.5V7.3125C19 4.93077 17.0692 3 14.6875 3H9.5C7.01472 3 5 5.01472 5 7.5C5 9.98528 7.01472 12 9.5 12H14.5C16.9853 12 19 14.0147 19 16.5C19 18.9853 16.9853 21 14.5 21H9.40625C6.97274 21 5 19.0273 5 16.5938V16.5"
                         stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg></button>
-            <!-- Añade la clase 'line-through' para el tachado -->
+            <!-- Añade la clase 'line-through' para el tachadooo -->
         </div>
 
         <form @submit.prevent="submitForm" method="post" class="space-y-4 flex">
