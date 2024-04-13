@@ -30,5 +30,6 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/crear-crud', [GetCrudsController::class, 'addData']);
 Route::get('/getData', [GetCrudsController::class, 'getData']);
+Route::post('/deleteData', [GetCrudsController::class, 'deleteData']);
 
 require __DIR__.'/auth.php';

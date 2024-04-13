@@ -30,7 +30,21 @@ class GetCrudsController extends Controller
         // Obtenir tots els registres de la taula "cruds_table"
         $cruds = Crud::all();
         
-        
         return response()->json($cruds);
+    }
+
+    public function deleteData(Request $request)
+    {
+        // Obtenir el valor de l'identificador enviat amb la petició POST
+        $id = $request->input('id');
+        
+        // Buscar el registre amb l'identificador rebut
+        $crud = Crud::find($id);
+        
+        // Eliminar el registre
+        $crud->delete();
+        
+        // Retornar a la pagina welcome
+        return redirect('/');
     }
 }

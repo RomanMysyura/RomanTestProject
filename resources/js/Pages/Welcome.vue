@@ -5,6 +5,7 @@ import Navbar from '@/Components/Navbar.vue';
 import Carousel from '@/Components/Carrousel.vue';
 import Cruds from '@/Components/Cruds.vue';
 import axios from 'axios';
+
 defineProps({
     canLogin: {
         type: Boolean,
@@ -34,6 +35,18 @@ onMounted(async () => {
     }
 });
 
+const deleteItem = async (id, index) => {
+    try {
+        // Eliminar el elemento de la lista
+        cruds.value.splice(index, 1);
+        console.log("Eliminat", id);
+        
+        await axios.post('/deleteData', { id });
+    } catch (error) {
+        console.error('Error al eliminar el elemento:', error);
+    }
+};
+
 </script>
 
 <template>
@@ -53,23 +66,23 @@ onMounted(async () => {
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(crud, index) in cruds" :key="index">
-                            <td>{{ index + 1 }}</td>
-                            <td>{{ crud.name }}</td>
-                            <td>Eliminar</td>
-                        </tr>
+                                <td>{{ crud.id }}</td>
+                                <td v-html="crud.name"></td>
+                                <td>
+                                    <button class="btn btn-sm" @click="deleteItem(crud.id, index)">Eliminar</button>
+                                </td>
+                            </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-
 
     </body>
 
