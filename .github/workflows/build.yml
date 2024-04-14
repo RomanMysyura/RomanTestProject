@@ -2,7 +2,7 @@ name: laravel-build
 on:
   push:
     branches:
-      - feature-branch001
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
