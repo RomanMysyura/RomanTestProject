@@ -64,7 +64,7 @@ export default {
 
 <template>
     <div class="max-w-md mx-auto mt-8">
-        <h1 class="text-center text-4xl font-bold mb-8">Formularis CRUDS & WYSIWYG</h1>
+        <h1 class="text-center text-4xl font-bold mb-8">Formularis (CRUDS & WYSIWYG)</h1>
 
         <div class="flex gap-1 justify-center mb-2  rounded p-0.5">
             <button type="button" @click="toggleBold" :class="{ 'bg-gray-300': isBold }"
