@@ -38,6 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/addcurs', [CursosController::class, 'addcurs']);
     Route::post('/deletecurs/{cursoId}', [CursosController::class, 'deletecurs']);
     Route::post('/togglecurs/{cursoId}', [CursosController::class, 'togglecurs']);
+    Route::get('/generarjson', [CursosController::class, 'generarjson']);
+
+    Route::get('/editar/{cursoId}', [CursosController::class, 'editar']);
+
 });
 
 

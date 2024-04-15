@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Curs; // Importa el modelo Curs
 use App\Models\OtroModelo; // Importa el modelo relacionado si es necesario
 use Inertia\Inertia;
-
+use Illuminate\Support\Facades\Response;
 class CursosController extends Controller
 {
     //
@@ -76,5 +76,32 @@ class CursosController extends Controller
 
         // Redirige de vuelta a la página de gestión de cursos
         return redirect('/gestiocursos');
+    }
+
+    public function generarjson()
+    {
+        $cursos = Curs::all();
+        $jsonData = $cursos->toJson();
+        $file = 'cursos.json';
+        file_put_contents($file, $jsonData);
+        return response()->download($file);
+    }
+
+
+
+    public function editar($cursoId)
+    {
+        // Busca el curso por su ID
+        $curs = Curs::find($cursoId);
+
+        // Si el curso no existe, redirige a la página de gestión de cursos
+        if (!$curs) {
+            return redirect('/gestiocursos');
+        }
+
+        // Muestra la vista 'EditarCurs' con los datos del curso
+        return Inertia::render('EditarCurs', [
+            'curs' => $curs,
+        ]);
     }
 }

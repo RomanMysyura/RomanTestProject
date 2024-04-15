@@ -2,6 +2,7 @@
 import Navbar from '@/Components/Navbar.vue';
 import { Head } from '@inertiajs/vue3';
 import axios from 'axios';
+import { Link } from '@inertiajs/vue3';
 
 
 defineProps({
@@ -66,13 +67,9 @@ const toggleVisibility = async (curso) => {
 };
 
 
-const generateJson = async () => {
-    try {
-        // Realiza una solicitud GET a /generarjson para generar el JSON de los cursos
-        await axios.get('/generarjson');
-    } catch (error) {
-        console.error('Error al generar el JSON de los cursos:', error);
-    }
+const openGenerateJson = () => {
+    const url = 'http://localhost:8000/generarjson/';
+    window.open(url, '_blank');
 };
 
 </script>
@@ -123,6 +120,7 @@ const generateJson = async () => {
                     <th>Descripción</th>
                     <th>Visible</th>
                     <th>Eliminar</th>
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
@@ -141,12 +139,14 @@ const generateJson = async () => {
                     <td>
                         <button @click="deleteCurso(curso.id)" class="btn btn-red">Eliminar</button>
                     </td>
+                    <td>
+                        <Link :href="`/editar/${curso.id}`">Editar</Link>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
 
-    <button @click="generateJson" class="btn">Generar json dels cursos</button>
-
+    <button @click="openGenerateJson" class="btn">Generar json dels cursos</button>
 </template>
