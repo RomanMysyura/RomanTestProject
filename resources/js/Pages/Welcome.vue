@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed  } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import Navbar from '@/Components/Navbar.vue';
 import Carousel from '@/Components/Carrousel.vue';
@@ -36,16 +36,22 @@ onMounted(async () => {
     }
 });
 
+
 const cursos = ref([]);
 
 onMounted(async () => {
     try {
         const response = await axios.get('/gestiocursostable');
-        console.log(response.data);
         cursos.value = response.data;
     } catch (error) {
         console.error('Error al obtener los datos:', error);
     }
+});
+
+const sortedCursos = computed(() => {
+    return cursos.value.slice().sort((a, b) => {
+        return a.nom.localeCompare(b.nom);
+    });
 });
 
 const deleteItem = async (id, index) => {
@@ -80,32 +86,30 @@ const deleteItem = async (id, index) => {
 
         <h1 class="text-center text-4xl">Desbloca el teu potencial amb l'EVA més divertit i interactiu!</h1>
 
-
         <div class="overflow-x-auto">
-            <table class="table">
-                <!-- head -->
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Etapa</th>
-                        <th>Descripción</th>
+    <table class="table">
+        <!-- head -->
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Etapa</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterar sobre los elementos del JSON -->
+            <tr v-for="(curso, index) in sortedCursos" :key="index">
+                <!-- Mostrar los valores en las celdas de la tabla -->
+                <td>{{ curso.id }}</td>
+                <td>{{ curso.nom }}</td>
+                <td>{{ curso.etapa }}</td>
+                <td v-html="curso.descripcio"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Iterar sobre los elementos del JSON -->
-                    <tr v-for="(curso, index) in cursos" :key="index">
-                        <!-- Mostrar los valores en las celdas de la tabla -->
-                        <td>{{ curso.id }}</td>
-                        <td>{{ curso.nom }}</td>
-                        <td>{{ curso.etapa }}</td>
-                        <td v-html="curso.descripcio"></td>
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
 
 
