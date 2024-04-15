@@ -3,7 +3,11 @@ import Navbar from '@/Components/Navbar.vue';
 import { Head } from '@inertiajs/vue3';
 import axios from 'axios';
 
-// Variables de datos para el formulario
+
+defineProps({
+    cursos: Array
+});
+
 const formData = {
     nom: '',
     etapa: '',
@@ -33,11 +37,49 @@ const clearForm = () => {
     formData.descripcio = '';
     formData.visible = true;
 };
+
+
+const deleteCurso = async (cursoId) => {
+    try {
+        // Realizar la solicitud DELETE a /deletecurs con el ID del curso a eliminar
+        await axios.post(`/deletecurs/${cursoId}`);
+
+        // Actualizar la lista de cursos después de eliminar el curso
+        // Puedes volver a cargar la página o actualizar la lista de cursos de alguna otra manera según tu preferencia
+        window.location.reload();
+    } catch (error) {
+        console.error('Error al eliminar el curso:', error);
+    }
+};
+
+
+const toggleVisibility = async (curso) => {
+    try {
+        // Realiza una solicitud PUT a /togglecurs/{cursoId} para cambiar la visibilidad del curso
+        await axios.post(`/togglecurs/${curso.id}`);
+
+        // Actualiza la lista de cursos después de cambiar la visibilidad
+        window.location.reload();
+    } catch (error) {
+        console.error('Error al cambiar la visibilidad del curso:', error);
+    }
+};
+
+
+const generateJson = async () => {
+    try {
+        // Realiza una solicitud GET a /generarjson para generar el JSON de los cursos
+        await axios.get('/generarjson');
+    } catch (error) {
+        console.error('Error al generar el JSON de los cursos:', error);
+    }
+};
+
 </script>
 
 <template>
     <Navbar />
-    
+
     <Head title="Gestio cursos" />
     <h1 class="text-center text-2xl">Gestio cursos</h1>
 
@@ -48,11 +90,13 @@ const clearForm = () => {
         </div>
         <div>
             <label for="etapa">Etapa:</label>
-            <input type="text" id="etapa" class="input input-bordered w-full max-w-xs" v-model="formData.etapa" required>
+            <input type="text" id="etapa" class="input input-bordered w-full max-w-xs" v-model="formData.etapa"
+                required>
         </div>
         <div>
             <label for="descripcio">Descripción:</label>
-            <textarea id="descripcio" class="input input-bordered w-full max-w-xs" v-model="formData.descripcio" required></textarea>
+            <textarea id="descripcio" class="input input-bordered w-full max-w-xs" v-model="formData.descripcio"
+                required></textarea>
         </div>
         <div>
             <label for="visible">Visible:</label>
@@ -69,48 +113,40 @@ const clearForm = () => {
 
 
 
-
     <div class="overflow-x-auto">
-  <table class="table">
-    <!-- head -->
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- row 1 -->
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      <!-- row 2 -->
-      <tr>
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      <!-- row 3 -->
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Etapa</th>
+                    <th>Descripción</th>
+                    <th>Visible</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="curso in cursos" :key="curso.id">
+                    <td>{{ curso.id }}</td>
+                    <td>{{ curso.nom }}</td>
+                    <td>{{ curso.etapa }}</td>
+                    <td>{{ curso.descripcio }}</td>
+                    <td>
+                        <button @click="toggleVisibility(curso)" class="btn"
+                            :class="{ 'btn-success': curso.visible, 'btn-error': !curso.visible }">
+                            {{ curso.visible ? 'Visible' : 'No visible' }}
+                        </button>
+                    </td>
+
+                    <td>
+                        <button @click="deleteCurso(curso.id)" class="btn btn-red">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
-
-
-
-
+    <button @click="generateJson" class="btn">Generar json dels cursos</button>
 
 </template>

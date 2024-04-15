@@ -17,4 +17,10 @@ class Curs extends Model
         'descripcio', // Descripción del curso
         'visible', // Indicador de visibilidad
     ];
+
+    // Define la relación belongsTo con otro modelo si es necesario
+    public function otroModelo()
+    {
+        return $this->belongsTo(OtroModelo::class);
+    }
 }

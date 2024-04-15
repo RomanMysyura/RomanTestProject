@@ -36,7 +36,8 @@ Route::post('/deleteData', [GetCrudsController::class, 'deleteData']);
 Route::middleware('auth')->group(function () {
     Route::get('/gestiocursos', [CursosController::class, 'gestioCursos']);
     Route::post('/addcurs', [CursosController::class, 'addcurs']);
-
+    Route::post('/deletecurs/{cursoId}', [CursosController::class, 'deletecurs']);
+    Route::post('/togglecurs/{cursoId}', [CursosController::class, 'togglecurs']);
 });
 
 
