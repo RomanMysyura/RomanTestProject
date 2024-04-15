@@ -80,26 +80,27 @@ const openGenerateJson = () => {
     <Head title="Gestio cursos" />
     <h1 class="text-center text-2xl">Gestio cursos</h1>
 
-    <form @submit.prevent="submitForm">
-        <div>
-            <label for="nom">Nombre:</label>
-            <input type="text" id="nom" class="input input-bordered w-full max-w-xs" v-model="formData.nom" required>
+    <form @submit.prevent="submitForm" class="max-w-xs mx-auto mt-8">
+        <div class="mb-4">
+            <label for="nom" class="block mb-1">Nom:</label>
+            <input type="text" id="nom" placeholder="Ingsereix nom del curs" class="input input-bordered w-full"
+                v-model="formData.nom" required>
         </div>
-        <div>
-            <label for="etapa">Etapa:</label>
-            <input type="text" id="etapa" class="input input-bordered w-full max-w-xs" v-model="formData.etapa"
-                required>
+        <div class="mb-4">
+            <label for="etapa" class="block mb-1">Etapa:</label>
+            <input type="text" id="etapa" placeholder="Insereix la etapa" class="input input-bordered w-full"
+                v-model="formData.etapa" required>
         </div>
-        <div>
-            <label for="descripcio">Descripción:</label>
-            <textarea id="descripcio" class="input input-bordered w-full max-w-xs" v-model="formData.descripcio"
-                required></textarea>
+        <div class="mb-4">
+            <label for="descripcio" class="block mb-1">Descripció:</label>
+            <textarea id="descripcio" placeholder="Insereix la descripcio" class="input input-bordered w-full"
+                v-model="formData.descripcio" required></textarea>
         </div>
-        <div>
-            <label for="visible">Visible:</label>
+        <div class="mb-4">
+            <label for="visible" class="block mb-1">Visible:</label>
             <input type="checkbox" id="visible" class="checkbox" v-model="formData.visible">
         </div>
-        <button type="submit" class="btn">Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 
 

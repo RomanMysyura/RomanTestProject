@@ -1,4 +1,43 @@
+<script setup>
+import { ref, defineProps } from 'vue';
+import { Inertia } from '@inertiajs/inertia';
+import Navbar from '@/Components/Navbar.vue';
+
+const props = defineProps({
+  curso: Object
+});
+
+const isBold = ref(false);
+const isItalic = ref(false);
+
+function submitForm() {
+  // Agregar etiqueta <strong> al texto si está en negrita
+  const descripcion = isBold.value ? `<strong>${props.curso.descripcio}</strong>` : props.curso.descripcio;
+
+  // Agregar etiqueta <em> al texto si está en cursiva
+  const descripcionFinal = isItalic.value ? `<em>${descripcion}</em>` : descripcion;
+
+  Inertia.post('/updatecurs', { curso: { ...props.curso, descripcio: descripcionFinal } })
+    .then(() => {
+      // Manejar respuesta del servidor si es necesario
+    })
+    .catch(error => {
+      // Manejar error si es necesario
+      console.error('Error al enviar datos:', error);
+    });
+}
+
+function toggleBold() {
+  isBold.value = !isBold.value;
+}
+
+function toggleItalic() {
+  isItalic.value = !isItalic.value;
+}
+</script>
+
 <template>
+    <Navbar />
     <div class="max-w-xl mx-auto mt-8">
       <h1 class="text-center text-3xl mb-8">Editar Curso</h1>
       <form @submit.prevent="submitForm" class="space-y-4">
@@ -34,43 +73,7 @@
     </div>
   </template>
   
-  <script setup>
-  import { ref, defineProps } from 'vue';
-  import { Inertia } from '@inertiajs/inertia';
-  
-  const props = defineProps({
-    curso: Object
-  });
-  
-  const isBold = ref(false);
-  const isItalic = ref(false);
-  
-  function submitForm() {
-    // Agregar etiqueta <strong> al texto si está en negrita
-    const descripcion = isBold.value ? `<strong>${props.curso.descripcio}</strong>` : props.curso.descripcio;
-  
-    // Agregar etiqueta <em> al texto si está en cursiva
-    const descripcionFinal = isItalic.value ? `<em>${descripcion}</em>` : descripcion;
-  
-    Inertia.post('/updatecurs', { curso: { ...props.curso, descripcio: descripcionFinal } })
-      .then(() => {
-        // Manejar respuesta del servidor si es necesario
-      })
-      .catch(error => {
-        // Manejar error si es necesario
-        console.error('Error al enviar datos:', error);
-      });
-  }
-  
-  function toggleBold() {
-    isBold.value = !isBold.value;
-  }
-  
-  function toggleItalic() {
-    isItalic.value = !isItalic.value;
-  }
-  </script>
-  
+
   <style>
   /* Estilo de texto en negrita e itálica */
   textarea {

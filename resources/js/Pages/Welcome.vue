@@ -36,6 +36,18 @@ onMounted(async () => {
     }
 });
 
+const cursos = ref([]);
+
+onMounted(async () => {
+    try {
+        const response = await axios.get('/gestiocursostable');
+        console.log(response.data);
+        cursos.value = response.data;
+    } catch (error) {
+        console.error('Error al obtener los datos:', error);
+    }
+});
+
 const deleteItem = async (id, index) => {
     try {
         // Eliminar el elemento de la lista
@@ -47,6 +59,9 @@ const deleteItem = async (id, index) => {
         console.error('Error al eliminar el elemento:', error);
     }
 };
+
+
+
 
 </script>
 
@@ -65,26 +80,29 @@ const deleteItem = async (id, index) => {
 
         <h1 class="text-center text-4xl">Desbloca el teu potencial amb l'EVA més divertit i interactiu!</h1>
 
+
         <div class="overflow-x-auto">
             <table class="table">
                 <!-- head -->
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Job</th>
-                        <th>Favorite Color</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Etapa</th>
+                        <th>Descripción</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- row 1 -->
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                    </tr>
+                    <!-- Iterar sobre los elementos del JSON -->
+                    <tr v-for="(curso, index) in cursos" :key="index">
+                        <!-- Mostrar los valores en las celdas de la tabla -->
+                        <td>{{ curso.id }}</td>
+                        <td>{{ curso.nom }}</td>
+                        <td>{{ curso.etapa }}</td>
+                        <td v-html="curso.descripcio"></td>
 
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -22,6 +22,15 @@ class CursosController extends Controller
         ]);
     }
 
+    public function gestiocursostable()
+{
+    // Filtrar los cursos donde visible sea 1
+    $cursos = Curs::where('visible', 1)->get();
+
+    return Response::json($cursos);
+}
+
+
     public function addcurs(Request $request)
     {
         // Valida los datos del formulario

@@ -34,9 +34,9 @@ const classes = computed(() =>
                 </div>
                 <ul tabindex="0"
                     class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a>Homepage</a></li>
+                    <li><Link href="/">Homepage</Link></li>
                     <li><Link href="/gestiocursos">Gestio de cursos</Link></li>
-                    <li><a>About</a></li>
+                    <li><Link href="/register">Registrarme</Link></li>
                 </ul>
             </div>
         </div>

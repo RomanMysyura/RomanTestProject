@@ -42,7 +42,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/editar/{cursoId}', [CursosController::class, 'editar']);
     Route::post('/updatecurs', [CursosController::class, 'updateCurs']);
+
+
 });
+Route::get('/gestiocursostable', [CursosController::class, 'gestiocursostable']);
 
 
 
