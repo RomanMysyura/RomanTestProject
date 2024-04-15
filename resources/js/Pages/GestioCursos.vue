@@ -16,14 +16,13 @@ const formData = {
     visible: true,
 };
 
-// Método para enviar el formulario
+
 const submitForm = async () => {
     try {
-        // Realizar la solicitud POST a /addcurs con los datos del formulario
+        
         console.log('Enviando formulario:', formData);
         await axios.post('/addcurs', formData);
 
-        // Limpiar el formulario después de enviar los datos
         window.location.reload()
         clearForm();
     } catch (error) {
@@ -31,7 +30,7 @@ const submitForm = async () => {
     }
 };
 
-// Método para limpiar el formulario después de enviar los datos
+
 const clearForm = () => {
     formData.nom = '';
     formData.etapa = '';
@@ -42,11 +41,9 @@ const clearForm = () => {
 
 const deleteCurso = async (cursoId) => {
     try {
-        // Realizar la solicitud DELETE a /deletecurs con el ID del curso a eliminar
+        
         await axios.post(`/deletecurs/${cursoId}`);
 
-        // Actualizar la lista de cursos después de eliminar el curso
-        // Puedes volver a cargar la página o actualizar la lista de cursos de alguna otra manera según tu preferencia
         window.location.reload();
     } catch (error) {
         console.error('Error al eliminar el curso:', error);
@@ -56,10 +53,9 @@ const deleteCurso = async (cursoId) => {
 
 const toggleVisibility = async (curso) => {
     try {
-        // Realiza una solicitud PUT a /togglecurs/{cursoId} para cambiar la visibilidad del curso
+       
         await axios.post(`/togglecurs/${curso.id}`);
 
-        // Actualiza la lista de cursos después de cambiar la visibilidad
         window.location.reload();
     } catch (error) {
         console.error('Error al cambiar la visibilidad del curso:', error);
@@ -149,5 +145,5 @@ const openGenerateJson = () => {
     </div>
 
 
-    <button @click="openGenerateJson" class="btn">Generar json dels cursos</button>
+    <button @click="openGenerateJson" class="btn btn-error content-center mb-20">Generar json dels cursos</button>
 </template>

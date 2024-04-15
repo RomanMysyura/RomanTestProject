@@ -11,18 +11,17 @@ const isBold = ref(false);
 const isItalic = ref(false);
 
 function submitForm() {
-  // Agregar etiqueta <strong> al texto si está en negrita
+
   const descripcion = isBold.value ? `<strong>${props.curso.descripcio}</strong>` : props.curso.descripcio;
 
-  // Agregar etiqueta <em> al texto si está en cursiva
+ 
   const descripcionFinal = isItalic.value ? `<em>${descripcion}</em>` : descripcion;
 
   Inertia.post('/updatecurs', { curso: { ...props.curso, descripcio: descripcionFinal } })
     .then(() => {
-      // Manejar respuesta del servidor si es necesario
     })
     .catch(error => {
-      // Manejar error si es necesario
+     
       console.error('Error al enviar datos:', error);
     });
 }
@@ -75,7 +74,7 @@ function toggleItalic() {
   
 
   <style>
-  /* Estilo de texto en negrita e itálica */
+
   textarea {
     font-weight: normal;
     font-style: normal;
