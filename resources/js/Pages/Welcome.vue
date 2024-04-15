@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed  } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import Navbar from '@/Components/Navbar.vue';
 import Carousel from '@/Components/Carrousel.vue';
@@ -84,31 +84,32 @@ const deleteItem = async (id, index) => {
 
 
 
-        <h1 class="text-center text-4xl">Desbloca el teu potencial amb l'EVA més divertit i interactiu!</h1>
+        <h1 class="text-center text-5xl font-bold mb-10">Desbloca el teu potencial amb l'EVA més divertit i interactiu!
+        </h1>
 
-        <div class="overflow-x-auto">
-    <table class="table">
-        <!-- head -->
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Etapa</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Iterar sobre los elementos del JSON -->
-            <tr v-for="(curso, index) in sortedCursos" :key="index">
-                <!-- Mostrar los valores en las celdas de la tabla -->
-                <td>{{ curso.id }}</td>
-                <td>{{ curso.nom }}</td>
-                <td>{{ curso.etapa }}</td>
-                <td v-html="curso.descripcio"></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <div class="overflow-x-auto ">
+            <table class="table text-xl">
+                <!-- head -->
+                <thead>
+                    <tr class="text-xl">
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Etapa</th>
+                        <th>Descripció</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterar sobre los elementos del JSON -->
+                    <tr v-for="(curso, index) in sortedCursos" :key="index">
+                        <!-- Mostrar los valores en las celdas de la tabla -->
+                        <td>{{ curso.id }}</td>
+                        <td>{{ curso.nom }}</td>
+                        <td>{{ curso.etapa }}</td>
+                        <td v-html="curso.descripcio"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
 
 
