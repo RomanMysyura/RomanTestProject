@@ -59,19 +59,35 @@ const deleteItem = async (id, index) => {
         <Navbar />
 
         <Carousel />
-        
-        
+
 
 
 
         <h1 class="text-center text-4xl">Desbloca el teu potencial amb l'EVA més divertit i interactiu!</h1>
 
+        <div class="overflow-x-auto">
+            <table class="table">
+                <!-- head -->
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Job</th>
+                        <th>Favorite Color</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- row 1 -->
+                    <tr>
+                        <th>1</th>
+                        <td>Cy Ganderton</td>
+                        <td>Quality Control Specialist</td>
+                        <td>Blue</td>
+                    </tr>
 
-
-
-
-
-
+                </tbody>
+            </table>
+        </div>
 
 
 

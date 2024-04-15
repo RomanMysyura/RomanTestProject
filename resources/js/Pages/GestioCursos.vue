@@ -128,7 +128,7 @@ const openGenerateJson = () => {
                     <td>{{ curso.id }}</td>
                     <td>{{ curso.nom }}</td>
                     <td>{{ curso.etapa }}</td>
-                    <td>{{ curso.descripcio }}</td>
+                    <td v-html="curso.descripcio"></td>
                     <td>
                         <button @click="toggleVisibility(curso)" class="btn"
                             :class="{ 'btn-success': curso.visible, 'btn-error': !curso.visible }">
