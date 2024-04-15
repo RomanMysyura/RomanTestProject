@@ -92,16 +92,41 @@ class CursosController extends Controller
     public function editar($cursoId)
     {
         // Busca el curso por su ID
-        $curs = Curs::find($cursoId);
-
-        // Si el curso no existe, redirige a la página de gestión de cursos
-        if (!$curs) {
-            return redirect('/gestiocursos');
+        $curso = Curs::find($cursoId);
+    
+        // Verifica si el curso existe
+        if (!$curso) {
+            // Si el curso no existe, redirige a alguna página de error o manejo de errores
+            // Por ejemplo, puedes redirigir a la página de gestión de cursos con un mensaje de error
+            return redirect('/gestiocursos')->with('error', 'El curso no existe.');
         }
-
-        // Muestra la vista 'EditarCurs' con los datos del curso
+    
+        // Pasa los datos del curso a la vista 'EditarCurs'
         return Inertia::render('EditarCurs', [
-            'curs' => $curs,
+            'curso' => $curso,
         ]);
     }
+    
+
+
+    public function updateCurs(Request $request)
+    {
+        // Valida los datos del formulario si es necesario
+        // $request->validate([...]);
+    
+        // Obtén el curso por su ID
+        $curso = Curs::find($request->input('curso.id'));
+    
+        // Actualiza los campos del curso con los datos del formulario
+        $curso->nom = $request->input('curso.nom');
+        $curso->etapa = $request->input('curso.etapa');
+        $curso->descripcio = $request->input('curso.descripcio');
+    
+        // Guarda los cambios en la base de datos
+        $curso->save();
+    
+        // Opcional: Puedes devolver una respuesta al cliente si es necesario
+        return redirect('/gestiocursos')->with('success', 'Curso actualizado exitosamente.');
+    }
+    
 }

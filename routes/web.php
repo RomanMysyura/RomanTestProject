@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/generarjson', [CursosController::class, 'generarjson']);
 
     Route::get('/editar/{cursoId}', [CursosController::class, 'editar']);
-
+    Route::post('/updatecurs', [CursosController::class, 'updateCurs']);
 });
 
 
