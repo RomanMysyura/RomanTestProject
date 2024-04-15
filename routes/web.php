@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GetCrudsController;
+use App\Http\Controllers\CursosController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,5 +32,13 @@ Route::middleware('auth')->group(function () {
 Route::post('/crear-crud', [GetCrudsController::class, 'addData']);
 Route::get('/getData', [GetCrudsController::class, 'getData']);
 Route::post('/deleteData', [GetCrudsController::class, 'deleteData']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/gestiocursos', [CursosController::class, 'gestioCursos']);
+    Route::post('/addcurs', [CursosController::class, 'addcurs']);
+
+});
+
+
 
 require __DIR__.'/auth.php';

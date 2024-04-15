@@ -2,6 +2,8 @@
 import { computed } from 'vue';
 import { Link } from '@inertiajs/vue3';
 
+
+
 const props = defineProps({
     href: {
         type: String,
@@ -33,14 +35,14 @@ const classes = computed(() =>
                 <ul tabindex="0"
                     class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                     <li><a>Homepage</a></li>
-                    <li><a>Portfolio</a></li>
+                    <li><Link href="/gestiocursos">Gestio de cursos</Link></li>
                     <li><a>About</a></li>
                 </ul>
             </div>
         </div>
         <div class="navbar-center">
            
-            <Link href="/" class="btn btn-ghost text-xl">Test Project 2</Link>
+            <Link href="/" class="btn btn-ghost text-xl">Test Project 2    <img src="img/logo.png" alt="Imagen 1" class="h-7"> </Link>
         </div>
         <div class="navbar-end">
             <Link class="btn btn-ghost btn-circle">

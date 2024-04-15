@@ -5,6 +5,7 @@ import Navbar from '@/Components/Navbar.vue';
 import Carousel from '@/Components/Carrousel.vue';
 import Cruds from '@/Components/Cruds.vue';
 import axios from 'axios';
+import Cookies from '@/Components/Cookies.vue';
 
 defineProps({
     canLogin: {
@@ -40,7 +41,7 @@ const deleteItem = async (id, index) => {
         // Eliminar el elemento de la lista
         cruds.value.splice(index, 1);
         console.log("Eliminat", id);
-        
+
         await axios.post('/deleteData', { id });
     } catch (error) {
         console.error('Error al eliminar el elemento:', error);
@@ -58,6 +59,22 @@ const deleteItem = async (id, index) => {
         <Navbar />
 
         <Carousel />
+        
+        
+
+
+
+        <h1 class="text-center text-4xl">Desbloca el teu potencial amb l'EVA més divertit i interactiu!</h1>
+
+
+
+
+
+
+
+
+
+
 
         <Cruds />
 
@@ -73,17 +90,17 @@ const deleteItem = async (id, index) => {
                     </thead>
                     <tbody>
                         <tr v-for="(crud, index) in cruds" :key="index">
-                                <td>{{ crud.id }}</td>
-                                <td v-html="crud.name"></td>
-                                <td>
-                                    <button class="btn btn-sm" @click="deleteItem(crud.id, index)">Eliminar</button>
-                                </td>
-                            </tr>
+                            <td>{{ crud.id }}</td>
+                            <td v-html="crud.name"></td>
+                            <td>
+                                <button class="btn btn-sm" @click="deleteItem(crud.id, index)">Eliminar</button>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
     </body>
-
+    <Cookies />
 </template>
