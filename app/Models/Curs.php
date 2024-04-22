@@ -5,22 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Contingut;
+
 class Curs extends Model
 {
     use HasFactory;
 
-    protected $table = 'cursos'; // Nombre de la tabla en la base de datos
+    protected $table = 'cursos'; 
 
-    protected $fillable = [ // Campos que se pueden asignar masivamente
-        'nom', // Nombre del curso
-        'etapa', // Etapa del curso
-        'descripcio', // Descripción del curso
-        'visible', // Indicador de visibilidad
+    protected $fillable = [ 
+        'nom',
+        'etapa', 
+        'descripcio', 
+        'visible', 
     ];
 
-    // Define la relación belongsTo con otro modelo si es necesario
-    public function otroModelo()
+    
+    public function continguts()
     {
-        return $this->belongsTo(OtroModelo::class);
+        return $this->hasMany(Contingut::class, 'id_curs');
     }
 }
